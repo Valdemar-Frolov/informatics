@@ -23,16 +23,13 @@ push(struct stack** head, const char value)
     {
         struct stack* p = *head;
         struct stack* t = (struct stack*)malloc(sizeof(struct stack));
-        t->data = value;
-        //printf("max = %d", p->max);
-        if (p->max < value)
+        t->data = value;        
+        if (p->max < t->data)
         {
-           // printf("111");
-            p->max = value;
-            //printf("max = %d", p->max);
+            t->max = t->data;          
         }
-        
-        t->max = p->max;
+        else
+            t->max = p->max;
         t->next = *head;
         *head = t;
     }
@@ -42,14 +39,9 @@ push(struct stack** head, const char value)
 int pop(struct stack** head)
 {
         int i = 1;
-        struct stack* b = *head;
-        
-        struct stack* t = *head;
-        
+        struct stack* b = *head;        
+        struct stack* t = *head;       
         int a;
-       //a = b->max;
-       
-        //printf("a = %d", a);
         if (t == NULL)
             return 0;
         else    
@@ -58,11 +50,9 @@ int pop(struct stack** head)
                 while (i != 0)
                 {
                     b = b->next;
-                    a = b->data;
-                    
+                    a = b->data;         
                     i--;
                 }
-                //printf("a = %d", a);
 
                 *head = (*head)->next;
                 char result = t->data;
@@ -70,21 +60,16 @@ int pop(struct stack** head)
 
                 struct stack* p = *head;
                 struct stack* c = *head;
+
                 while (p != NULL)
                 {  
-                   // printf("a = %d", a);
                     if (p->data > a)
                     {
-                        //printf("a = %d", a);
-                        //printf("1 = !!!");
-                        a = p->data;
-                        
+                      a = p->data;         
                     }
                     p = p->next;
                 }
-                //printf("a = %d", a);
                 c->max = a;
-                //printf("c = %d", c->max);
                 return result;
             }
             else
